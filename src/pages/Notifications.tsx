@@ -3,6 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
 
 const notifications = [
   {
@@ -40,6 +41,8 @@ const notifications = [
 ];
 
 const Notifications = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -49,9 +52,9 @@ const Notifications = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
               <Bell className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground mb-4">Notificações</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t("notifications.title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Acompanhe os alertas sobre o nível das lixeiras em tempo real
+              {t("notifications.subtitle")}
             </p>
           </div>
 
@@ -78,10 +81,10 @@ const Notifications = () => {
                       <AlertTitle className="mb-2 flex items-center gap-2">
                         {notification.title}
                         <Badge className={badgeClass}>
-                          {notification.type === "danger" && "Urgente"}
-                          {notification.type === "warning" && "Atenção"}
-                          {notification.type === "success" && "Concluído"}
-                          {notification.type === "info" && "Info"}
+                          {notification.type === "danger" && t("notifications.urgent")}
+                          {notification.type === "warning" && t("notifications.attention")}
+                          {notification.type === "success" && t("notifications.completed")}
+                          {notification.type === "info" && t("notifications.info")}
                         </Badge>
                       </AlertTitle>
                       <AlertDescription className="mb-2">
@@ -96,28 +99,28 @@ const Notifications = () => {
           </div>
 
           <div className="mt-12 bg-card border border-border rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Configurações de Notificações</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-4">{t("notifications.settingsTitle")}</h2>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-foreground">Alertas de Nível Crítico</p>
-                  <p className="text-sm text-muted-foreground">Receba notificações quando a lixeira estiver 90% cheia</p>
+                  <p className="font-medium text-foreground">{t("notifications.criticalAlerts")}</p>
+                  <p className="text-sm text-muted-foreground">{t("notifications.criticalAlertsDesc")}</p>
                 </div>
-                <Badge className="bg-success text-white">Ativo</Badge>
+                <Badge className="bg-success text-white">{t("notifications.active")}</Badge>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-foreground">Alertas de Manutenção</p>
-                  <p className="text-sm text-muted-foreground">Notificações sobre manutenções programadas</p>
+                  <p className="font-medium text-foreground">{t("notifications.maintenanceAlerts")}</p>
+                  <p className="text-sm text-muted-foreground">{t("notifications.maintenanceAlertsDesc")}</p>
                 </div>
-                <Badge className="bg-success text-white">Ativo</Badge>
+                <Badge className="bg-success text-white">{t("notifications.active")}</Badge>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-foreground">Relatórios Semanais</p>
-                  <p className="text-sm text-muted-foreground">Resumo semanal do status das lixeiras</p>
+                  <p className="font-medium text-foreground">{t("notifications.weeklyReports")}</p>
+                  <p className="text-sm text-muted-foreground">{t("notifications.weeklyReportsDesc")}</p>
                 </div>
-                <Badge className="bg-success text-white">Ativo</Badge>
+                <Badge className="bg-success text-white">{t("notifications.active")}</Badge>
               </div>
             </div>
           </div>

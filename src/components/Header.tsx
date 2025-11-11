@@ -7,6 +7,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSelector from "@/components/LanguageSelector";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,13 +17,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
+  
   const navLinks = [
-    { to: "/", label: "Dashboard" },
-    { to: "/notifications", label: "Notificações" },
-    { to: "/comments", label: "Comentários" },
-    { to: "/contact", label: "Contato" },
+    { to: "/", label: t("header.dashboard") },
+    { to: "/notifications", label: t("header.notifications") },
+    { to: "/comments", label: t("header.comments") },
+    { to: "/contact", label: t("header.contact") },
   ];
 
   return (
@@ -57,6 +61,7 @@ const Header = () => {
             </Link>
           </Button>
 
+          <LanguageSelector />
           <ThemeToggle />
 
           <DropdownMenu>
@@ -65,19 +70,20 @@ const Header = () => {
                 <User className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="bg-popover border-border z-50">
+              <DropdownMenuLabel>{t("header.account")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Perfil</DropdownMenuItem>
-              <DropdownMenuItem>Configurações</DropdownMenuItem>
+              <DropdownMenuItem>{t("header.profile")}</DropdownMenuItem>
+              <DropdownMenuItem>{t("header.settings")}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Sair</DropdownMenuItem>
+              <DropdownMenuItem>{t("header.logout")}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
         {/* Mobile Navigation */}
         <div className="flex md:hidden items-center gap-2">
+          <LanguageSelector />
           <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
@@ -102,21 +108,21 @@ const Header = () => {
                   className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary flex items-center gap-2"
                 >
                   <Bell className="h-5 w-5" />
-                  Notificações
+                  {t("header.notifications")}
                   <Badge className="ml-auto">3</Badge>
                 </Link>
                 <DropdownMenuSeparator />
                 <div className="text-sm text-muted-foreground mt-4">
-                  <p className="font-medium mb-2">Conta</p>
+                  <p className="font-medium mb-2">{t("header.account")}</p>
                   <div className="space-y-2">
                     <button className="w-full text-left hover:text-primary transition-colors">
-                      Perfil
+                      {t("header.profile")}
                     </button>
                     <button className="w-full text-left hover:text-primary transition-colors">
-                      Configurações
+                      {t("header.settings")}
                     </button>
                     <button className="w-full text-left hover:text-primary transition-colors">
-                      Sair
+                      {t("header.logout")}
                     </button>
                   </div>
                 </div>

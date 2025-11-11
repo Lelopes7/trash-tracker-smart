@@ -6,9 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,8 +20,8 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
+      title: t("contact.messageSent"),
+      description: t("contact.messageSentDesc"),
     });
     setFormData({ name: "", email: "", message: "" });
   };
@@ -30,20 +32,20 @@ const Contact = () => {
       <main className="flex-1 container py-12">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Entre em Contato</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t("contact.title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Estamos aqui para ajudar. Envie sua mensagem e responderemos em breve.
+              {t("contact.subtitle")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">Envie uma Mensagem</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.formTitle")}</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
-                    Nome
+                    {t("contact.name")}
                   </label>
                   <Input
                     id="name"
@@ -54,7 +56,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="email" className="text-sm font-medium text-foreground block mb-2">
-                    Email
+                    {t("contact.email")}
                   </label>
                   <Input
                     id="email"
@@ -66,7 +68,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="message" className="text-sm font-medium text-foreground block mb-2">
-                    Mensagem
+                    {t("contact.message")}
                   </label>
                   <Textarea
                     id="message"
@@ -77,7 +79,7 @@ const Contact = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Enviar Mensagem
+                  {t("contact.send")}
                 </Button>
               </form>
             </div>
@@ -85,14 +87,14 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-lg p-6">
-                <h2 className="text-2xl font-semibold text-foreground mb-6">Informações de Contato</h2>
+                <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.infoTitle")}</h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="bg-primary/10 p-3 rounded-lg">
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground mb-1">Email</h3>
+                      <h3 className="font-medium text-foreground mb-1">{t("contact.email")}</h3>
                       <p className="text-muted-foreground">contato@trashtracker.com</p>
                     </div>
                   </div>
@@ -102,7 +104,7 @@ const Contact = () => {
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground mb-1">Telefone</h3>
+                      <h3 className="font-medium text-foreground mb-1">{t("contact.phone")}</h3>
                       <p className="text-muted-foreground">(11) 9999-9999</p>
                     </div>
                   </div>
@@ -112,7 +114,7 @@ const Contact = () => {
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground mb-1">Endereço</h3>
+                      <h3 className="font-medium text-foreground mb-1">{t("contact.address")}</h3>
                       <p className="text-muted-foreground">São Paulo, SP<br />Brasil</p>
                     </div>
                   </div>
@@ -120,11 +122,9 @@ const Contact = () => {
               </div>
 
               <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Horário de Atendimento</h3>
-                <p className="text-muted-foreground">
-                  Segunda a Sexta: 9h às 18h<br />
-                  Sábado: 9h às 13h<br />
-                  Domingo: Fechado
+                <h3 className="text-lg font-semibold text-foreground mb-4">{t("contact.hoursTitle")}</h3>
+                <p className="text-muted-foreground" style={{ whiteSpace: "pre-line" }}>
+                  {t("contact.hours")}
                 </p>
               </div>
             </div>

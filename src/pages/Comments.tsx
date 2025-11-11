@@ -5,16 +5,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
 
 const Comments = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [comment, setComment] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Comentário enviado!",
-      description: "Obrigado pelo seu feedback.",
+      title: t("comments.commentSent"),
+      description: t("comments.commentSentDesc"),
     });
     setComment("");
   };
@@ -28,9 +30,9 @@ const Comments = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
               <MessageSquare className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground mb-4">Comentários e Sugestões</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t("comments.title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Sua opinião é muito importante para melhorarmos nosso serviço.
+              {t("comments.subtitle")}
             </p>
           </div>
 
@@ -38,11 +40,11 @@ const Comments = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="comment" className="text-sm font-medium text-foreground block mb-2">
-                  Seu Comentário
+                  {t("comments.yourComment")}
                 </label>
                 <Textarea
                   id="comment"
-                  placeholder="Compartilhe suas ideias, sugestões ou experiências com o TrashTracker..."
+                  placeholder={t("comments.placeholder")}
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   rows={8}
@@ -50,13 +52,13 @@ const Comments = () => {
                 />
               </div>
               <Button type="submit" className="w-full" size="lg">
-                Enviar Comentário
+                {t("comments.submit")}
               </Button>
             </form>
           </div>
 
           <div className="mt-12 space-y-6">
-            <h2 className="text-2xl font-semibold text-foreground">Comentários Recentes</h2>
+            <h2 className="text-2xl font-semibold text-foreground">{t("comments.recentTitle")}</h2>
             
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-lg p-6">
@@ -67,7 +69,7 @@ const Comments = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-medium text-foreground">Maria Silva</span>
-                      <span className="text-sm text-muted-foreground">há 2 dias</span>
+                      <span className="text-sm text-muted-foreground">{t("comments.daysAgo", { days: 2 })}</span>
                     </div>
                     <p className="text-muted-foreground">
                       Excelente sistema! Conseguimos reduzir significativamente o desperdício com o monitoramento em tempo real.
@@ -84,7 +86,7 @@ const Comments = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-medium text-foreground">João Santos</span>
-                      <span className="text-sm text-muted-foreground">há 5 dias</span>
+                      <span className="text-sm text-muted-foreground">{t("comments.daysAgo", { days: 5 })}</span>
                     </div>
                     <p className="text-muted-foreground">
                       Interface muito intuitiva. As notificações ajudam muito no gerenciamento eficiente das lixeiras.

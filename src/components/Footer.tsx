@@ -1,7 +1,10 @@
 import { Recycle, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="border-t border-border bg-card mt-auto">
       <div className="container py-12">
@@ -13,27 +16,27 @@ const Footer = () => {
               <span className="text-lg font-bold text-foreground">TrashTracker</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Monitoramento inteligente de lixeiras para um futuro mais sustentável.
+              {t("footer.brand")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Links Rápidos</h3>
+            <h3 className="text-sm font-semibold text-foreground">{t("footer.quickLinks")}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Dashboard
+                  {t("header.dashboard")}
                 </Link>
               </li>
               <li>
                 <Link to="/notifications" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Notificações
+                  {t("header.notifications")}
                 </Link>
               </li>
               <li>
                 <Link to="/comments" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Comentários
+                  {t("header.comments")}
                 </Link>
               </li>
             </ul>
@@ -41,7 +44,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Contato</h3>
+            <h3 className="text-sm font-semibold text-foreground">{t("footer.contactInfo")}</h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary" />
@@ -60,16 +63,16 @@ const Footer = () => {
 
           {/* About */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Sobre</h3>
+            <h3 className="text-sm font-semibold text-foreground">{t("footer.about")}</h3>
             <p className="text-sm text-muted-foreground">
-              Sistema de monitoramento que utiliza sensores ultrassônicos para medir níveis de lixo em tempo real.
+              {t("footer.aboutText")}
             </p>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} TrashTracker. Todos os direitos reservados.
+            © {new Date().getFullYear()} TrashTracker. {t("footer.rights")}
           </p>
         </div>
       </div>
