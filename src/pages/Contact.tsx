@@ -47,7 +47,11 @@ const Contact = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-lg p-6">
+            <motion.div 
+              className="bg-card border border-border rounded-lg p-6"
+              whileHover={{ scale: 1.01, y: -3 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
               <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.formTitle")}</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -85,15 +89,21 @@ const Contact = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  {t("contact.send")}
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button type="submit" className="w-full">
+                    {t("contact.send")}
+                  </Button>
+                </motion.div>
               </form>
-            </div>
+            </motion.div>
 
             {/* Contact Info */}
             <div className="space-y-6">
-              <div className="bg-card border border-border rounded-lg p-6">
+              <motion.div 
+                className="bg-card border border-border rounded-lg p-6"
+                whileHover={{ scale: 1.01, y: -3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.infoTitle")}</h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
@@ -126,14 +136,18 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-card border border-border rounded-lg p-6">
+              <motion.div 
+                className="bg-card border border-border rounded-lg p-6"
+                whileHover={{ scale: 1.01, y: -3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <h3 className="text-lg font-semibold text-foreground mb-4">{t("contact.hoursTitle")}</h3>
                 <p className="text-muted-foreground" style={{ whiteSpace: "pre-line" }}>
                   {t("contact.hours")}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>

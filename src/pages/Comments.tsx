@@ -43,7 +43,11 @@ const Comments = () => {
             </p>
           </div>
 
-          <div className="bg-card border border-border rounded-lg p-8">
+          <motion.div 
+            className="bg-card border border-border rounded-lg p-8"
+            whileHover={{ scale: 1.01, y: -3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="comment" className="text-sm font-medium text-foreground block mb-2">
@@ -58,17 +62,23 @@ const Comments = () => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full" size="lg">
-                {t("comments.submit")}
-              </Button>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button type="submit" className="w-full" size="lg">
+                  {t("comments.submit")}
+                </Button>
+              </motion.div>
             </form>
-          </div>
+          </motion.div>
 
           <div className="mt-12 space-y-6">
             <h2 className="text-2xl font-semibold text-foreground">{t("comments.recentTitle")}</h2>
             
             <div className="space-y-4">
-              <div className="bg-card border border-border rounded-lg p-6">
+              <motion.div 
+                className="bg-card border border-border rounded-lg p-6"
+                whileHover={{ x: 5, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                     <span className="text-primary font-semibold">M</span>
@@ -83,9 +93,13 @@ const Comments = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-card border border-border rounded-lg p-6">
+              <motion.div 
+                className="bg-card border border-border rounded-lg p-6"
+                whileHover={{ x: 5, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                     <span className="text-primary font-semibold">J</span>
@@ -100,7 +114,7 @@ const Comments = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>

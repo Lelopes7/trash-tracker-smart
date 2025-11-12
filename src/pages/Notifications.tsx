@@ -66,7 +66,7 @@ const Notifications = () => {
           </div>
 
           <div className="space-y-4">
-            {notifications.map((notification) => {
+            {notifications.map((notification, index) => {
               const Icon = notification.icon;
               let alertVariant: "default" | "destructive" = "default";
               let badgeClass = "bg-primary";
@@ -81,7 +81,14 @@ const Notifications = () => {
               }
 
               return (
-                <Alert key={notification.id} variant={alertVariant} className="border-2">
+                <motion.div
+                  key={notification.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ x: 5, scale: 1.01 }}
+                >
+                <Alert variant={alertVariant} className="border-2">
                   <Icon className="h-5 w-5" />
                   <div className="flex items-start justify-between flex-1">
                     <div>
@@ -101,11 +108,16 @@ const Notifications = () => {
                     </div>
                   </div>
                 </Alert>
+                </motion.div>
               );
             })}
           </div>
 
-          <div className="mt-12 bg-card border border-border rounded-lg p-6">
+          <motion.div 
+            className="mt-12 bg-card border border-border rounded-lg p-6"
+            whileHover={{ scale: 1.01, y: -3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <h2 className="text-xl font-semibold text-foreground mb-4">{t("notifications.settingsTitle")}</h2>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -130,7 +142,7 @@ const Notifications = () => {
                 <Badge className="bg-success text-white">{t("notifications.active")}</Badge>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </main>
       <Footer />

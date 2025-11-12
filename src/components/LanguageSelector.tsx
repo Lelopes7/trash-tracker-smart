@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const languages = [
   { code: "pt", name: "Português", flag: "🇧🇷" },
@@ -22,23 +23,30 @@ const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="transition-transform hover:scale-110">
-          <Languages className="h-5 w-5" />
-          <span className="sr-only">Selecionar idioma</span>
-        </Button>
+        <motion.div whileHover={{ scale: 1.1, rotate: 10 }} whileTap={{ scale: 0.9 }}>
+          <Button variant="ghost" size="icon" className="transition-transform">
+            <Languages className="h-5 w-5" />
+            <span className="sr-only">Selecionar idioma</span>
+          </Button>
+        </motion.div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-popover border-border z-50">
         {languages.map((language) => (
-          <DropdownMenuItem
+          <motion.div
             key={language.code}
-            onClick={() => i18n.changeLanguage(language.code)}
-            className={`cursor-pointer ${
-              i18n.language === language.code ? "bg-accent" : ""
-            }`}
+            whileHover={{ x: 5 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <span className="mr-2 text-lg">{language.flag}</span>
-            <span>{language.name}</span>
-          </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => i18n.changeLanguage(language.code)}
+              className={`cursor-pointer ${
+                i18n.language === language.code ? "bg-accent" : ""
+              }`}
+            >
+              <span className="mr-2 text-lg">{language.flag}</span>
+              <span>{language.name}</span>
+            </DropdownMenuItem>
+          </motion.div>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

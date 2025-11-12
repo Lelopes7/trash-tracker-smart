@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -33,33 +34,42 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Recycle className="h-8 w-8 text-primary" />
+          <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
+            <Recycle className="h-8 w-8 text-primary" />
+          </motion.div>
           <span className="text-xl font-bold text-foreground">TrashTracker</span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link
+            <motion.div
               key={link.to}
-              to={link.to}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {link.label}
-            </Link>
+              <Link
+                to={link.to}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            </motion.div>
           ))}
         </nav>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="ghost" size="icon" asChild className="relative">
-            <Link to="/notifications">
-              <Bell className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
-                3
-              </Badge>
-            </Link>
-          </Button>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Button variant="ghost" size="icon" asChild className="relative">
+              <Link to="/notifications">
+                <Bell className="h-5 w-5" />
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                  3
+                </Badge>
+              </Link>
+            </Button>
+          </motion.div>
 
           <LanguageSelector />
           <ThemeToggle />

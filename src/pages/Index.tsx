@@ -86,7 +86,11 @@ const Index = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
           >
-            <Card>
+            <motion.div
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{t("dashboard.averageLevel")}</CardTitle>
                 <TrendingUp className="h-4 w-4 text-muted-foreground" />
@@ -98,8 +102,13 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
+            </motion.div>
 
-            <Card>
+            <motion.div
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{t("dashboard.activeBins")}</CardTitle>
                 <Trash2 className="h-4 w-4 text-muted-foreground" />
@@ -111,8 +120,13 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
+            </motion.div>
 
-            <Card>
+            <motion.div
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{t("dashboard.criticalAlerts")}</CardTitle>
                 <AlertCircle className="h-4 w-4 text-muted-foreground" />
@@ -124,6 +138,7 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
+            </motion.div>
           </motion.div>
 
           {/* Chart */}
@@ -132,6 +147,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ scale: 1.01 }}
           >
           <Card>
             <CardHeader>
