@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const notifications = [
   {
@@ -41,13 +42,19 @@ const notifications = [
 ];
 
 const Notifications = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 container py-12">
-        <div className="max-w-4xl mx-auto">
+        <motion.div 
+          key={i18n.language}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto"
+        >
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
               <Bell className="h-8 w-8 text-primary" />
@@ -124,7 +131,7 @@ const Notifications = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </main>
       <Footer />
     </div>

@@ -7,10 +7,11 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,7 +31,13 @@ const Contact = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 container py-12">
-        <div className="max-w-5xl mx-auto">
+        <motion.div 
+          key={i18n.language}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-5xl mx-auto"
+        >
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-foreground mb-4">{t("contact.title")}</h1>
             <p className="text-lg text-muted-foreground">
@@ -129,7 +136,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </main>
       <Footer />
     </div>

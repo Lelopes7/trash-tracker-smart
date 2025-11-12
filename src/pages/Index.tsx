@@ -6,9 +6,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-recycling.jpg";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Index = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   const [trashData, setTrashData] = useState([
     { name: `${t("dashboard.bin")} 1`, nivel: 85, status: "warning" },
@@ -58,21 +59,33 @@ const Index = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/50 flex items-center">
-            <div className="container">
+            <motion.div 
+              key={`hero-${i18n.language}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="container"
+            >
               <h1 className="text-5xl font-bold text-foreground mb-4">
                 {t("dashboard.title")}
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
                 {t("dashboard.subtitle")}
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Dashboard Section */}
         <section className="container py-12">
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <motion.div 
+            key={`stats-${i18n.language}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+          >
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{t("dashboard.averageLevel")}</CardTitle>
@@ -111,9 +124,15 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Chart */}
+          <motion.div
+            key={`chart-${i18n.language}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
           <Card>
             <CardHeader>
               <CardTitle>{t("dashboard.chartTitle")}</CardTitle>
@@ -155,6 +174,7 @@ const Index = () => {
               </ResponsiveContainer>
             </CardContent>
           </Card>
+          </motion.div>
 
           {/* Legend */}
           <div className="flex flex-wrap items-center justify-center gap-6 mt-6">
